@@ -112,3 +112,52 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function createArticle(info){
+  //create elements
+  const artic = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const firstPara = document.createElement('p');
+  const secondPara = document.createElement('p');
+  const thirdPara = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+  //add classes
+  artic.classList.add('article');
+  date.classList.add('date');
+  expandButton.classList.add('expandButton');
+
+  //set element structure
+  artic.append(title, date, firstPara, secondPara, thirdPara, expandButton);
+
+  //apply text content
+  title.textContent = info.title;
+  date.textContent = info.date;
+  firstPara.textContent = info.firstParagraph;
+  secondPara.textContent = info.secondParagraph;
+  thirdPara.textContent = info.thirdParagraph;
+
+  //add event listener to toggle class on article div
+  expandButton.addEventListener('click', () => {
+    artic.classList.toggle('article-open');
+    if (artic.classList.contains('article-open')){
+      expandButton.textContent = '\u25b2';
+    } else {
+      expandButton.textContent = '\u25bc';
+    }
+  })
+
+  expandButton.textContent = '\u25bc';
+
+  return artic;
+}
+
+
+//select parent div for all articles
+const articlesDiv = document.querySelector('.articles');
+
+//add articles to page
+data.map(item => {
+  articlesDiv.appendChild(createArticle(item));
+});
