@@ -149,14 +149,17 @@ function createArticle(info){
   const secondPara = document.createElement('p');
   const thirdPara = document.createElement('p');
   const expandButton = document.createElement('span');
+  const closeButton = document.createElement('span');
 
   //add classes
   artic.classList.add('article');
   date.classList.add('date');
   expandButton.classList.add('expandButton');
+  closeButton.classList.add('close');
+  closeButton.style.cursor = 'pointer';
 
   //set element structure
-  artic.append(title, date, firstPara, secondPara, thirdPara, expandButton);
+  artic.append(title, date, firstPara, secondPara, thirdPara, expandButton, closeButton);
 
   //apply text content
   title.textContent = info.title;
@@ -164,6 +167,7 @@ function createArticle(info){
   firstPara.textContent = info.firstParagraph;
   secondPara.textContent = info.secondParagraph;
   thirdPara.textContent = info.thirdParagraph;
+  closeButton.textContent = 'CLOSE';
 
   //add event listener to toggle class on article div
   expandButton.addEventListener('click', () => {
@@ -173,6 +177,9 @@ function createArticle(info){
     } else {
       expandButton.textContent = '\u25bc';
     }
+  })
+  closeButton.addEventListener('click', () => {
+    artic.style.display = 'none';
   })
 
   expandButton.textContent = '\u25bc';
@@ -188,39 +195,3 @@ const articlesDiv = document.querySelector('.articles');
 data.map(item => {
   articlesDiv.appendChild(createArticle(item));
 });
-
-// //Add 3 more articles:
-// const newData = [
-//   {
-//     title: 'Veggies!',
-//     date: 'August 24th, 1980',
-//     firstParagraph: `Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.`,
-
-//     secondParagraph: `Turnip greens yarrow ricebean rutabaga endive cauliflower sea lettuce kohlrabi amaranth water spinach avocado daikon napa cabbage asparagus winter purslane kale. Celery potato scallion desert raisin horseradish spinach carrot soko. Lotus root water spinach fennel kombu maize bamboo shoot green bean swiss chard seakale pumpkin onion chickpea gram corn pea. Brussels sprout coriander water chestnut gourd swiss chard wakame kohlrabi beetroot carrot watercress. Corn amaranth salsify bunya nuts nori azuki bean chickweed potato bell pepper artichoke.`,
-
-//     thirdParagraph: `Soko radicchio bunya nuts gram dulse silver beet parsnip napa cabbage lotus root sea lettuce brussels sprout cabbage. Catsear cauliflower garbanzo yarrow salsify chicory garlic bell pepper napa cabbage lettuce tomato kale arugula melon sierra leone bologi rutabaga tigernut. Sea lettuce gumbo grape kale kombu cauliflower salsify kohlrabi okra sea lettuce broccoli celery lotus root carrot winter purslane turnip greens garlic. Jicama garlic courgette coriander radicchio plantain scallion cauliflower fava bean desert raisin spring onion chicory bunya nuts. Sea lettuce water spinach gram fava bean leek dandelion silver beet eggplant bush tomato.`
-//   },
-//   {
-//     title: 'Gosh Mom...',
-//     date: 'After all these years',
-//     firstParagraph: `Please refrain from Mayoneggs during this salmonella scare. Yeah, well, have you seen the new Mustang? You could hump that hood. George Michael may be suffering from what we in the soft-sciences call Obsessive Compulsive Disorder, or the "OC Disorder." Don't ask "Can I"...ask "I Can!" Are all the guys in here... you know? George Sr: No not all of them. Barry: Yeah. It's never the ones you hope. Let me out that Queen. In the mid '90s, Tobias formed a folk music band with Lindsay and Maebe which he called Dr. Funke's 100 Percent Natural Good Time Family Band Solution. The group was underwritten by the Natural Food Life Company, a division of Chem-Grow, an Allen Crayne acqusition, which was part of the Squimm Group. Their motto was simple: We keep you alive.`,
-
-//     secondParagraph: `Do you have any idea how often you say the word "afraid"? Well, I know I used it in the Jacuzzi. Hey, it was one night of wild passion! And yet you didn't notice her body? I like to look in the mirror. Uncle Gob... was Aunt Lindsay ever pregnant? Yeah, sure, dozens of times. Even though so many people in this office are begging for it. Don't worry, these young beauties have been nowhere near the bananas.`,
-
-//     thirdParagraph: `Butterscotch! Want a lick? Either I zip down, or he zips up, and that is a mighty long zipper on Mother's Cher jumpsuit. I've always been deeply passionate about nature. Perhaps you remember Neuterfest? M: I'll never forget your wedding. Ah coodle doodle doo, ah coodle doodle doo. When a.. man.. needs to prove to a woman that he's actually.. [pause].. When a man loves a woman.. I call it Tricks -- wait for it -- Around The Office. If you're suggesting I play favorites, you're wrong. I love all of my children equally. I don't care for Gob.`
-//   },
-//   {
-//     title: 'Avast!',
-//     date: 'November 22nd, 1718',
-//     firstParagraph: `Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard grog black jack gangway rutters.`,
-
-//     secondParagraph: `Deadlights jack lad schooner scallywag dance the hempen jig carouser broadside cable strike colors. Bring a spring upon her cable holystone blow the man down spanker Shiver me timbers to go on account lookout wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot yardarm spyglass sheet transom heave to.`,
-
-//     thirdParagraph: `Trysail Sail ho Corsair red ensign hulk smartly boom jib rum gangway. Case shot Shiver me timbers gangplank crack Jennys tea cup ballast Blimey lee snow crow's nest rutters. Fluke jib scourge of the seven seas boatswain schooner gaff booty Jack Tar transom spirits.`
-//   }
-// ];
-
-// //add new articles to page
-// newData.map(item => {
-//   articlesDiv.appendChild(createArticle(item));
-// });

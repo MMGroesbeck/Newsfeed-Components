@@ -52,6 +52,9 @@ function createMenu(items){
   menuButton = document.querySelector('.menu-button');
   menuButton.addEventListener('click', () => {
     menu.classList.toggle('menu--open');
+    if (menu.classList.contains('menu--open')){
+      gsap.from(menu, {duration: 1, x: -350, autoAlpha: 0});
+    }
   })
 
   return menu;
